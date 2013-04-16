@@ -1,1 +1,126 @@
 @import "compass_twitter_bootstrap";
+
+*{
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#myModal {
+	font-size: 16px;
+	line-height: 23px;
+	padding: 10px;
+}
+
+.modal-footer {
+	background-color: #fff;
+}
+
+#map-canvas {
+	height: 95%;	
+	width: 100%;
+}
+
+.navbar-inner {
+	background-image: none;
+	border-radius: 0;
+	box-shadow: none;
+	border: none;
+	color: #3B2D38;
+	background-repeat: none;
+}
+
+.navbar-inner > .container {
+	width: 1200px;
+}
+
+#usgs {
+	margin-top: 25px;
+	margin-left: 23px;
+	margin-right: 25px;
+}
+
+.btn-toolbar {
+	margin-left: 20px;
+}
+
+.btn-group > .btn {
+	font-size: 16px;
+	background-image: none;
+	background-repeat: none;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 10px 0;
+	padding: 8px 20px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.brand,
+.brand:hover {
+	font-weight: 700;
+	font-size: 40px; 
+	color: white;
+	position: fixed;
+	padding: 20px 19px;
+	background-color: #F02475;
+	text-decoration: none;
+	top: 400px;
+	letter-spacing: 1px;
+	left: 50px;
+}
+
+.about,
+.about:hover {
+	font-weight: 400;
+	font-size: 16px; 
+	color: white;
+	position: fixed;
+	padding: 8px 20px;
+	background-color: #F02475;
+	text-decoration: none;
+	top: 470px;
+	text-shadow: none;
+	background-image: none;
+	background-repeat: none;
+	border: none;
+	left: 50px;
+	border-radius: 0;
+}
+
+.content1{
+	display: inline-block;
+	float: left;
+	position: fixed; 
+	top: 0; 
+	right: 0; 
+	background-color: #fff;
+	padding: 30px;
+}
+
+.scrollspy-example {
+	height: 800px;
+	overflow: auto;
+	position: relative;
+	width: 300px;
+}
+
+#tweets {
+	margin-top: 0;
+	margin-left: 0;
+	padding: 0 10px;
+	list-style-type: none;
+}
+
+#tweets > li {
+	padding-top: 30px;
+	font-size: 14px;
+}
