@@ -60,7 +60,8 @@
           var marker = new google.maps.Marker({
             position: latLng,
             map: map,
-            icon: getCircle(earthquake.properties.mag)
+            icon: getCircle(earthquake.properties.mag),
+            zIndex: 1
           });
           marker.category = results.metadata.title;
           marker.setVisible(false);
@@ -116,7 +117,8 @@
                 var latLng = new google.maps.LatLng(coords[0],coords[1]);
                 var marker = new google.maps.Marker({
                   position: latLng,
-                  map: map
+                  map: map,
+                  zIndex: 2
                 });
                 marker.category = 'tweets';
                 tweetMarkers.push(marker);
