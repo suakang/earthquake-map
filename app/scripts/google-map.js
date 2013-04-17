@@ -108,6 +108,28 @@
         }
       }
 
+      function drawTweets (tweets) {
+        for (i=0, tL = tweets.length; i < tL; i += 1) {
+            var tweet = tweets[i];
+            if (tweet.geo != null) {
+                var coords = tweet.geo.coordinates;
+                var latLng = new google.maps.LatLng(coords[0],coords[1]);
+                var marker = new google.maps.Marker({
+                  position: latLng,
+                  map: map
+                });
+                marker.category = 'tweets';
+                tweetMarkers.push(marker);
+            }
+        }
+      }
+
+      function removeTweets () {
+          for (i=0, tL = tweetMarkers.length; i < tL; i += 1) {
+            tweetMarkers[i].setMap(null);
+          }
+      }
+
       function searchTweets(location) {
             var searchUrl = 'http://search.twitter.com/search.json?q=%23earthquake&geocode=' + location + ',25mi';
             console.log(location);
@@ -122,7 +144,14 @@
             */
 
             success: function(data) {
-              console.log(data);
+                removeTweets();
+                tweetsArray = [];
+                for (i=0, dL = data.results.length; i < dL; i += 1) {
+                    var tweet = data.results[i];
+                    tweetsArray.push(tweet);
+                }
+
+                drawTweets(tweetsArray);
             }
           });
       }
