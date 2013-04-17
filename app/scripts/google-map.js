@@ -4,6 +4,8 @@
         var weekClick = false;
         var dayClick = false;
         var monthClick = false;
+        var tweetsArray = [];
+        var tweetMarkers = [];
 
         function initialize( ) {
 
