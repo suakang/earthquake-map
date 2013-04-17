@@ -4,6 +4,8 @@
         var weekClick = false;
         var dayClick = false;
         var monthClick = false;
+        var tweetsArray = [];
+        var tweetMarkers = [];
 
         function initialize( ) {
 
@@ -58,7 +60,8 @@
           var marker = new google.maps.Marker({
             position: latLng,
             map: map,
-            icon: getCircle(earthquake.properties.mag)
+            icon: getCircle(earthquake.properties.mag),
+            zIndex: 1
           });
           marker.category = results.metadata.title;
           marker.setVisible(false);
@@ -106,8 +109,31 @@
         }
       }
 
+      function drawTweets (tweets) {
+        for (i=0, tL = tweets.length; i < tL; i += 1) {
+            var tweet = tweets[i];
+            if (tweet.geo != null) {
+                var coords = tweet.geo.coordinates;
+                var latLng = new google.maps.LatLng(coords[0],coords[1]);
+                var marker = new google.maps.Marker({
+                  position: latLng,
+                  map: map,
+                  zIndex: 2
+                });
+                marker.category = 'tweets';
+                tweetMarkers.push(marker);
+            }
+        }
+      }
+
+      function removeTweets () {
+          for (i=0, tL = tweetMarkers.length; i < tL; i += 1) {
+            tweetMarkers[i].setMap(null);
+          }
+      }
+
       function searchTweets(location) {
-            var searchUrl = 'https://api.twitter.com/1.1/search/tweets.json?q=%23earthquake';
+            var searchUrl = 'http://search.twitter.com/search.json?q=%23earthquake&geocode=' + location + ',25mi';
             console.log(location);
           $.ajax({
             /* the 'param' function ensures that search terms are properly encoded */
@@ -120,7 +146,14 @@
             */
 
             success: function(data) {
-              console.log(data);
+                removeTweets();
+                tweetsArray = [];
+                for (i=0, dL = data.results.length; i < dL; i += 1) {
+                    var tweet = data.results[i];
+                    tweetsArray.push(tweet);
+                }
+
+                drawTweets(tweetsArray);
             }
           });
       }
