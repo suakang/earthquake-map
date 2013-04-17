@@ -109,7 +109,7 @@
       }
 
       function searchTweets(location) {
-            var searchUrl = 'https://api.twitter.com/1.1/search/tweets.json?q=%23earthquake';
+            var searchUrl = 'http://search.twitter.com/search.json?q=%23earthquake&geocode=' + location + ',25mi';
             console.log(location);
           $.ajax({
             /* the 'param' function ensures that search terms are properly encoded */
