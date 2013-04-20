@@ -25,7 +25,7 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControl: false,
             minZoom: 2,
-            maxZoom: 5
+            maxZoom: 8
           }
 
           map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -115,11 +115,24 @@
             if (tweet.geo != null) {
                 var coords = tweet.geo.coordinates;
                 var latLng = new google.maps.LatLng(coords[0],coords[1]);
+                var image = 'images/twitter.png';
+                var infowindow = new google.maps.InfoWindow();
+
                 var marker = new google.maps.Marker({
                   position: latLng,
+                  icon: image,
                   map: map,
-                  zIndex: 2
+                  zIndex: null,
                 });
+
+                /*var boxText = document.createElement("div");
+                boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background-color: yellow;";
+                boxText.innerHTML = "City YEAH DFJLDSKFJDLSKF";
+
+                  google.maps.event.addListener(marker.'click', function(e) {
+                  infowindow.open(map.marker);
+                });*/
+
                 marker.category = 'tweets';
                 tweetMarkers.push(marker);
             }
@@ -131,6 +144,8 @@
             tweetMarkers[i].setMap(null);
           }
       }
+
+
 
       function searchTweets(location) {
             var searchUrl = 'http://search.twitter.com/search.json?q=%23earthquake&geocode=' + location + ',25mi';
